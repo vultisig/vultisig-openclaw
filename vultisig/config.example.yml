@@ -1,0 +1,31 @@
+# Vultisig Dev Agent Configuration
+# Copy to config.yml and fill in your details.
+
+developer:
+  name: "Alice"
+  github_username: "alice-dev"
+  github_bot_account: "alice-vultisig-bot"   # Separate bot account for PRs
+  timezone: "Europe/Berlin"
+
+notifications:
+  telegram_bot_token: ""              # Create via @BotFather
+  telegram_chat_id: ""               # Get via @userinfobot
+
+repos:
+  active:                             # Which repos this agent works on
+    - vultisig-sdk
+    - vultisig-windows
+    - docs
+  base_dir: "~/vultisig-repos"       # Where repos are cloned
+
+agent:
+  # Your choice of model. Sonnet and Opus both work well.
+  # Sonnet: fast, cost-effective, great for most tasks (recommended)
+  # Opus:   deeper reasoning, better for complex/architectural work
+  #
+  # Anthropic direct:  "anthropic/claude-sonnet-4-6"  or  "anthropic/claude-opus-4-6"
+  # OpenRouter:        "openrouter/anthropic/claude-sonnet-4-6"
+  model_primary: "anthropic/claude-sonnet-4-6"         # Does the real work
+  model_polling: "anthropic/claude-haiku-4-5"          # Lightweight lookups only
+
+cron_mode: "nightshift"               # "nightshift" (default) or "active"

@@ -1,0 +1,12 @@
+# Secrets — NEVER commit
+.env
+
+# Generated config
+config.yml
+
+# Generated workspace files (templated from .tmpl)
+workspace/IDENTITY.md
+workspace/USER.md
+
+# OpenClaw runtime
+.openclaw/
