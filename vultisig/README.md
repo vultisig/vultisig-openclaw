@@ -21,6 +21,38 @@ Vultisig-specific layer on top.
 6. CI passes → agent marks PR ready, notifies you
 7. You review and merge (agent never merges)
 
+```
+ You                          GitHub                        Agent (VPS)
+  │                             │                              │
+  ├─ Create issue ─────────────►│                              │
+  ├─ Add label: agent:assigned ►│                              │
+  ├─ Assign: your-bot ─────────►│                              │
+  │                             │                              │
+  │                             │◄──── polls every 15 min ─────┤
+  │                             │─── new issue found! ────────►│
+  │                             │                              │
+  │                             │         ┌────────────────────┤
+  │                             │         │ 1. Read issue      │
+  │                             │         │ 2. Load brain docs │
+  │                             │         │ 3. Create branch   │
+  │                             │         │ 4. Code + test     │
+  │                             │         │ 5. Open PR         │
+  │                             │         └────────────────────┤
+  │                             │                              │
+  │  ◄── Telegram: "PR ready" ──┼──────────────────────────────┤
+  │                             │                              │
+  │                             │◄── CodeRabbit reviews ───────│
+  │                             │─── feedback ────────────────►│
+  │                             │◄── agent pushes fixes ───────┤
+  │                             │         (up to 3 rounds)     │
+  │                             │                              │
+  │  ◄── Telegram: "Ready for ──┼──────────────────────────────┤
+  │      your review"           │                              │
+  │                             │                              │
+  ├─ Review + Merge ───────────►│                              │
+  │                             │                  agent never merges
+```
+
 ---
 
 ## Setup
